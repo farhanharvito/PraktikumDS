@@ -1,0 +1,53 @@
+---
+title: "Tugas 3_Modul7"
+author: "Farhan Harvito"
+date: "2022-11-02"
+output:
+  word_document: default
+  pdf_document: default
+---
+ 
+1. Menggunakan as_tibble untuk mengkonversi tabel dataset “US murders” dalam bentuk tibble dan menyimpannya dalam objek baru bernama ‘murders_tibble’
+```{r}
+library(dslabs)
+library(tidyverse)
+data(murders)
+murders_tibble <- murders%>%as_tibble()
+```
+
+2. Menggunakan fungsi group_by untuk mengkonversi dataset “US murders” menjadi sebuah tibble yang dikelompokkan berdasarkan ‘region’
+```{r}
+as_tibble(murders) %>% group_by(region)
+```
+
+3. Menggunakan operator pipe dan dot operator
+```{r}
+library(dslabs)
+library(dplyr)
+data(murders)
+murders %>% 
+     pull(population) %>% 
+     log %>%
+     mean %>% 
+     exp
+```
+
+4. 
+```{r}
+mapping <- function(n){
+  baris<-1:n
+  result<-0
+  for(i in baris){
+    result <- result + i
+    result2 <- result^2
+  }
+  tibble(
+    n,
+    s_n = result,
+    s_n_2 = result2
+  )
+}
+
+x = 1:100
+map_df(x,mapping)
+```
